@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Kod Generatoru</title>
+</head>
+<body>
+    <h1>QR Kod Yarat</h1>
+    <form action="/" method="post">
+        <input type="text" name="qr_name" placeholder="QR üçün ad (istəyə bağlı)">
+        <input type="text" name="data" placeholder="QR kod üçün məlumat" required>
+        <input type="number" name="box_size" placeholder="Blok ölçüsü" value="10">
+        <input type="number" name="border" placeholder="Çərçivə qalınlığı" value="4">
+        <input type="color" name="fill_color" value="#000000">
+        <input type="color" name="back_color" value="#ffffff">
+        <button type="submit">QR kod yarat</button>
+    </form>
+
+    <h2>Mövcud QR Kodlar</h2>
+    <ul>
+        {% for key, path in qr_codes.items() %}
+        <li>
+            <img src="{{ path }}" width="100"><br>
+            <strong>{{ key }}</strong>
+            <br>
+            <a href="/download/{{ key }}">
+                <button>Yüklə</button>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
